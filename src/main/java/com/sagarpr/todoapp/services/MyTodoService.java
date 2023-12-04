@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface MyTodoService {
     List<MyTodoDto> findAllTodo();
+
+    void save(MyTodoDto myTodoDto);
 }

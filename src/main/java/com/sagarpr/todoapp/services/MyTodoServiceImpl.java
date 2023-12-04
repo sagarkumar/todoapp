@@ -27,6 +27,14 @@ public class MyTodoServiceImpl implements MyTodoService{
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public void save(MyTodoDto myTodoDto) {
+        MyTodo myTodo = MyTodo.builder()
+                .title(myTodoDto.getTitle())
+                .description(myTodoDto.getDescription()).build();
+        this.myTodoRepository.save(myTodo);
+    }
+
     private MyTodoDto mapTodoToDto(MyTodo x) {
         return MyTodoDto
                 .builder()

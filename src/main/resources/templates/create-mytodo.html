@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form role="form" method="post" th:action="@{/createmytodo}" th:object="${myTodoDto}">
+    <label>Title:</label><br>
+    <input type="text" th:field="*{title}"><br>
+    <label>Description:</label><br>
+    <input type="text" th:field="*{description}"><br><br>
+    <input type="submit" value="Submit">
+</form>
+</body>
+</html>
