@@ -12,6 +12,7 @@
         <th>ID</th>
         <th>Title</th>
         <th>Description</th>
+        <th>Edit</th>
     </tr>
     </thead>
     <tbody>
@@ -19,6 +20,7 @@
         <td th:text="${todo.id}"></td>
         <td th:text="${todo.title}"></td>
         <td th:text="${todo.description}"></td>
+        <td><a th:href="@{/mytodo/{myTodoId}/edit(myTodoId=${todo.id})}">Edit</a></td>
     </tr>
     </tbody>
 </table>

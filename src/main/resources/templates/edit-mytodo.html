@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form role="form" method="post" th:action="@{/mytodo/{myTodoId}/edit(myTodoId=${myTodoDto.id})}" th:object="${myTodoDto}">
+    <label>Title:</label><br>
+    <input type="hidden" th:field="*{id}">
+    <input type="text"  id="title" name="title" th:field="*{title}"><br>
+    <label>Description:</label><br>
+    <input type="text"  id="description" name="description" th:field="*{description}"><br><br>
+    <input type="submit" value="Submit">
+</form>
+</body>
+</html>

@@ -5,11 +5,11 @@
     <title>Title</title>
 </head>
 <body>
-<form role="form" method="post" th:action="@{/createmytodo}" th:object="${myTodoDto}">
+<form role="form" method="post" th:action="@{/createmytodo}">
     <label>Title:</label><br>
-    <input type="text" th:field="*{title}"><br>
+    <input type="text"  id="title" name="title"><br>
     <label>Description:</label><br>
-    <input type="text" th:field="*{description}"><br><br>
+    <input type="text"  id="description" name="description"><br><br>
     <input type="submit" value="Submit">
 </form>
 </body>

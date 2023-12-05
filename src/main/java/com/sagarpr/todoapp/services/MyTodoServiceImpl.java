@@ -28,10 +28,23 @@ public class MyTodoServiceImpl implements MyTodoService{
     }
 
     @Override
-    public void save(MyTodoDto myTodoDto) {
+    public void save(MyTodo myTodo) {
+        this.myTodoRepository.save(myTodo);
+    }
+
+    @Override
+    public MyTodoDto findMyTodoById(long myTodoId) {
+        MyTodo myTodo = this.myTodoRepository.findById(myTodoId).get();
+        return mapTodoToDto(myTodo);
+    }
+
+    @Override
+    public void updateMyTodo(MyTodoDto myTodoDto) {
         MyTodo myTodo = MyTodo.builder()
+                .id(myTodoDto.getId())
                 .title(myTodoDto.getTitle())
-                .description(myTodoDto.getDescription()).build();
+                .description(myTodoDto.getDescription())
+                .build();
         this.myTodoRepository.save(myTodo);
     }
 
