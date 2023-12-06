@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -16,4 +18,6 @@ public class MyTodoDto {
     private String title;
     @NotEmpty(message = "Description should not be empty")
     private String description;
+
+    private List<TodoTagDto> tags;
 }

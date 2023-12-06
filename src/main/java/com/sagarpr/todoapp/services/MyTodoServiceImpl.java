@@ -1,7 +1,9 @@
 package com.sagarpr.todoapp.services;
 
 import com.sagarpr.todoapp.dto.MyTodoDto;
+import com.sagarpr.todoapp.dto.TodoTagDto;
 import com.sagarpr.todoapp.models.MyTodo;
+import com.sagarpr.todoapp.models.TodoTag;
 import com.sagarpr.todoapp.repository.MyTodoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -64,7 +66,15 @@ public class MyTodoServiceImpl implements MyTodoService{
                 .builder()
                 .id(x.getId())
                 .title(x.getTitle())
+                .tags(x.getTodoTagList().stream().map(this::mapTodoTagToDto).collect(Collectors.toList()))
                 .description(x.getDescription())
                 .build();
+    }
+
+    private TodoTagDto mapTodoTagToDto(TodoTag todoTag) {
+        return TodoTagDto.builder()
+                .id(todoTag.getId())
+                .tagName(todoTag.getTagName())
+                .tagValue(todoTag.getTagValue()).build();
     }
 }

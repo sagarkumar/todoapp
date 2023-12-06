@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form role="form" method="post" th:action="@{/todotag/{myTodoId}(myTodoId=${myTodoId})}"  th:object="${todoTagDto}">
+    <input type="hidden" th:field="*{id}">
+    <label>Tag Name:</label><br>
+    <input type="text"  id="tagname" name="tagname" th:field="*{tagName}">
+    <br>
+    <label>Tag Value:</label><br>
+    <input type="text"  id="tagValue" name="tagValue" th:field="*{tagValue}">
+    <br><br>
+    <input type="submit" value="Submit">
+</form>
+</body>
+</html>

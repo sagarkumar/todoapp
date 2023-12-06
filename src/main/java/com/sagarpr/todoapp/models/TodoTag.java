@@ -6,25 +6,21 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "mytodo")
-public class MyTodo {
+public class TodoTag {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String title;
-    private String description;
+    private String tagName;
+    private String tagValue;
 
-    @OneToMany(mappedBy = "myTodo",cascade = CascadeType.REMOVE)
-    private List<TodoTag> todoTagList = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "mytodo_id",nullable = false)
+    private MyTodo myTodo;
+
 }

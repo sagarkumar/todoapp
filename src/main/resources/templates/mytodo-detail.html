@@ -8,6 +8,24 @@
 
     <h2 th:text="${myTodoDto.title}"></h2>
     <p th:text="${myTodoDto.description}"></p>
+
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Tag Name</th>
+            <th>Tag Value</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="todoTag:${myTodoDto.tags}">
+            <td th:text="${todoTag.id}"></td>
+            <td th:text="${todoTag.tagName}"></td>
+            <td th:text="${todoTag.tagValue}"></td>
+        </tr>
+        </tbody>
+    </table>
+
     <a th:href="@{/mytodo/{myTodoId}/delete(myTodoId=${myTodoDto.id})}">Delete</a>
 </body>
 </html>
