@@ -15,4 +15,6 @@ public interface MyTodoService {
     void updateMyTodo(MyTodoDto myTodoDto);
 
     void deleteMyTodo(long myTodoId);
+
+    List<MyTodoDto> searchMyTodos(String query);
 }

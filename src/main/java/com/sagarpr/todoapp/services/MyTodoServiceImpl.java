@@ -53,6 +53,12 @@ public class MyTodoServiceImpl implements MyTodoService{
         this.myTodoRepository.deleteById(myTodoId);
     }
 
+    @Override
+    public List<MyTodoDto> searchMyTodos(String query) {
+        List<MyTodo> myTodos = this.myTodoRepository.searchMyToDos(query);
+        return myTodos.stream().map(this::mapTodoToDto).collect(Collectors.toList());
+    }
+
     private MyTodoDto mapTodoToDto(MyTodo x) {
         return MyTodoDto
                 .builder()

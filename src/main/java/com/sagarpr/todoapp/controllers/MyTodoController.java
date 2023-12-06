@@ -1,6 +1,7 @@
 package com.sagarpr.todoapp.controllers;
 
 import com.sagarpr.todoapp.dto.MyTodoDto;
+import com.sagarpr.todoapp.dto.MyTodoSearchDto;
 import com.sagarpr.todoapp.models.MyTodo;
 import com.sagarpr.todoapp.services.MyTodoService;
 import jakarta.validation.Valid;
@@ -41,6 +42,19 @@ public class MyTodoController {
     public String deleteMyTodo(@PathVariable("myTodoId") long myTodoId){
         this.myTodoService.deleteMyTodo(myTodoId);
         return "redirect:/mytodo";
+    }
+
+    @GetMapping("/mytodo/searchByTitle")
+    public String searchByTitleForm(Model model){
+        model.addAttribute("myTodoSearchDto", MyTodoSearchDto.builder().build());
+        return "mytodo-search";
+    }
+
+    @PostMapping("/mytodo/searchByTitle")
+    public String searchByTitle(@ModelAttribute("myTodoSearchDto") MyTodoSearchDto myTodoSearchDto, Model model){
+        List<MyTodoDto> myTodoDtos = this.myTodoService.searchMyTodos(myTodoSearchDto.query);
+        model.addAttribute("myTodoDtos",myTodoDtos);
+        return "mytodo-search-results";
     }
 
     @GetMapping("/createmytodo")
