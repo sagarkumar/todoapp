@@ -5,11 +5,16 @@
     <title>Title</title>
 </head>
 <body>
-<form role="form" method="post" th:action="@{/createmytodo}">
+<form role="form" method="post" th:action="@{/createmytodo}"  th:object="${myTodoDto}">
+    <input type="hidden" th:field="*{id}">
     <label>Title:</label><br>
-    <input type="text"  id="title" name="title"><br>
+    <input type="text"  id="title" name="title" th:field="*{title}">
+    <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></p>
+    <br>
     <label>Description:</label><br>
-    <input type="text"  id="description" name="description"><br><br>
+    <input type="text"  id="description" name="description" th:field="*{description}">
+    <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></p>
+    <br><br>
     <input type="submit" value="Submit">
 </form>
 </body>

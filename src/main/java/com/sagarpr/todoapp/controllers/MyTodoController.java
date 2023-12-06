@@ -3,10 +3,12 @@ package com.sagarpr.todoapp.controllers;
 import com.sagarpr.todoapp.dto.MyTodoDto;
 import com.sagarpr.todoapp.models.MyTodo;
 import com.sagarpr.todoapp.services.MyTodoService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,14 +32,20 @@ public class MyTodoController {
 
     @GetMapping("/createmytodo")
     public String createMyTodoForm(Model model){
+        model.addAttribute("myTodoDto",MyTodoDto.builder().build());
         return "create-mytodo";
     }
 
     @PostMapping("/createmytodo")
-    public String saveMyTodo(@RequestParam("title") String title,@RequestParam("description") String description){
+    public String saveMyTodo(@Valid @ModelAttribute("myTodoDto") MyTodoDto myTodoDto, BindingResult result ){
+
+        if(result.hasErrors()){
+            return "create-mytodo";
+        }
+
         this.myTodoService.save(MyTodo.builder()
-                .title(title)
-                .description(description).build());
+                .title(myTodoDto.getTitle())
+                .description(myTodoDto.getDescription()).build());
         return "redirect:/mytodo";
     }
 
@@ -49,7 +57,12 @@ public class MyTodoController {
     }
 
     @PostMapping("/mytodo/{myTodoId}/edit")
-    public String editMyTodo(@PathVariable("myTodoId") long myTodoId, @ModelAttribute("myTodoDto") MyTodoDto myTodoDto){
+    public String editMyTodo(@PathVariable("myTodoId") long myTodoId, @Valid @ModelAttribute("myTodoDto") MyTodoDto myTodoDto, BindingResult result){
+
+        if(result.hasErrors()){
+            return "edit-mytodo";
+        }
+
         myTodoDto.setId(myTodoId);
         this.myTodoService.updateMyTodo(myTodoDto);
         return "redirect:/mytodo";

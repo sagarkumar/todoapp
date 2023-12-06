@@ -8,9 +8,13 @@
 <form role="form" method="post" th:action="@{/mytodo/{myTodoId}/edit(myTodoId=${myTodoDto.id})}" th:object="${myTodoDto}">
     <label>Title:</label><br>
     <input type="hidden" th:field="*{id}">
-    <input type="text"  id="title" name="title" th:field="*{title}"><br>
+    <input type="text"  id="title" name="title" th:field="*{title}">
+    <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></p>
+    <br>
     <label>Description:</label><br>
-    <input type="text"  id="description" name="description" th:field="*{description}"><br><br>
+    <input type="text"  id="description" name="description" th:field="*{description}">
+    <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></p>
+    <br><br>
     <input type="submit" value="Submit">
 </form>
 </body>
