@@ -37,9 +37,10 @@ public class MyTodoController {
     }
 
     @PostMapping("/createmytodo")
-    public String saveMyTodo(@Valid @ModelAttribute("myTodoDto") MyTodoDto myTodoDto, BindingResult result ){
+    public String saveMyTodo(@Valid @ModelAttribute("myTodoDto") MyTodoDto myTodoDto, BindingResult result,Model model ){
 
         if(result.hasErrors()){
+            model.addAttribute("myTodoDto",myTodoDto);
             return "create-mytodo";
         }
 
@@ -57,9 +58,10 @@ public class MyTodoController {
     }
 
     @PostMapping("/mytodo/{myTodoId}/edit")
-    public String editMyTodo(@PathVariable("myTodoId") long myTodoId, @Valid @ModelAttribute("myTodoDto") MyTodoDto myTodoDto, BindingResult result){
+    public String editMyTodo(@PathVariable("myTodoId") long myTodoId, @Valid @ModelAttribute("myTodoDto") MyTodoDto myTodoDto, BindingResult result, Model model){
 
         if(result.hasErrors()){
+            model.addAttribute("myTodoDto",myTodoDto);
             return "edit-mytodo";
         }
 
