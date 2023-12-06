@@ -35,7 +35,12 @@ public class MyTodoController {
         MyTodoDto myTodoDto = this.myTodoService.findMyTodoById(myTodoId);
         model.addAttribute("myTodoDto",myTodoDto);
         return "mytodo-detail";
+    }
 
+    @GetMapping("/mytodo/{myTodoId}/delete")
+    public String deleteMyTodo(@PathVariable("myTodoId") long myTodoId){
+        this.myTodoService.deleteMyTodo(myTodoId);
+        return "redirect:/mytodo";
     }
 
     @GetMapping("/createmytodo")

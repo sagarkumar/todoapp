@@ -13,4 +13,6 @@ public interface MyTodoService {
     MyTodoDto findMyTodoById(long myTodoId);
 
     void updateMyTodo(MyTodoDto myTodoDto);
+
+    void deleteMyTodo(long myTodoId);
 }

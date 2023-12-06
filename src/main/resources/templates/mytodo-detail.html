@@ -8,5 +8,6 @@
 
     <h2 th:text="${myTodoDto.title}"></h2>
     <p th:text="${myTodoDto.description}"></p>
+    <a th:href="@{/mytodo/{myTodoId}/delete(myTodoId=${myTodoDto.id})}">Delete</a>
 </body>
 </html>

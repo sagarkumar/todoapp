@@ -48,6 +48,11 @@ public class MyTodoServiceImpl implements MyTodoService{
         this.myTodoRepository.save(myTodo);
     }
 
+    @Override
+    public void deleteMyTodo(long myTodoId) {
+        this.myTodoRepository.deleteById(myTodoId);
+    }
+
     private MyTodoDto mapTodoToDto(MyTodo x) {
         return MyTodoDto
                 .builder()
