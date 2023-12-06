@@ -3,6 +3,7 @@ package com.sagarpr.todoapp.controllers;
 import com.sagarpr.todoapp.dto.TodoTagDto;
 import com.sagarpr.todoapp.services.TodoTagService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,5 +42,12 @@ public class TodoTagController  {
         List<TodoTagDto> todoTagDtoList = this.todoTagService.getAllTodoTags();
         model.addAttribute("todoTagDtoList",todoTagDtoList);
         return "alltodotag-details";
+    }
+
+    @GetMapping("todoTags/{todoTagId}")
+    public String getTodoTagDetailPage(@PathVariable("todoTagId") long todoTagId,  Model model){
+        TodoTagDto  todoTagDto = this.todoTagService.getTodoTagDetails(todoTagId);
+        model.addAttribute("todoTagDto",todoTagDto);
+        return "todotag-detail";
     }
 }

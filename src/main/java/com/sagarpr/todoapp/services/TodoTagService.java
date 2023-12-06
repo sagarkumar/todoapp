@@ -8,4 +8,6 @@ public interface TodoTagService {
     void createTodoTag(long myTodoId, TodoTagDto todoTagDto);
 
     List<TodoTagDto> getAllTodoTags();
+
+    TodoTagDto getTodoTagDetails(long todoTagId);
 }

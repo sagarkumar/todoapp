@@ -38,6 +38,12 @@ public class TodoTagServiceImpl implements TodoTagService{
         return todoTagList.stream().map(this::mapToEventDto).collect(Collectors.toList());
     }
 
+    @Override
+    public TodoTagDto getTodoTagDetails(long todoTagId) {
+        TodoTag todoTag = this.todoTagRepository.findById(todoTagId).get();
+        return mapToEventDto(todoTag);
+    }
+
     private TodoTagDto mapToEventDto(TodoTag todoTag) {
         return TodoTagDto.builder()
                 .id(todoTag.getId())
