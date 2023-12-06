@@ -30,6 +30,14 @@ public class MyTodoController {
         return "mytodo-list";
     }
 
+    @GetMapping("/mytodo/{myTodoId}")
+    public String getDetailedMyTodo(@PathVariable("myTodoId") long myTodoId, Model model){
+        MyTodoDto myTodoDto = this.myTodoService.findMyTodoById(myTodoId);
+        model.addAttribute("myTodoDto",myTodoDto);
+        return "mytodo-detail";
+
+    }
+
     @GetMapping("/createmytodo")
     public String createMyTodoForm(Model model){
         model.addAttribute("myTodoDto",MyTodoDto.builder().build());
